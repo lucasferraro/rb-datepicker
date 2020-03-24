@@ -39,6 +39,13 @@ export default class PickerUI extends React.Component {
         return startDate && endDate ? `${startDate.format("DD/MM/YYYY")} - ${endDate.format("DD/MM/YYYY")}` : "";
     }
 
+    onCancel = () => {
+        const { onCancel } = this.props;
+        if (onCancel) {
+            onCancel();
+        }
+    }
+
 
     render() {
         const { onDayClick, onDayMouseEnter } = this;
@@ -49,7 +56,7 @@ export default class PickerUI extends React.Component {
                 <div className="ranges" />
                 <div className="drp-buttons">
                     <span className="drp-selected">{this.dateLabel()}</span>
-                    <button className="cancelBtn btn btn-sm btn-default" type="button">
+                    <button className="cancelBtn btn btn-sm btn-default" type="button" onClick={this.onCancel}>
                         Cancel
           </button>
                     <button className="applyBtn btn btn-sm btn-primary" type="button" onClick={this.onApply}>
